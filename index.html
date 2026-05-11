@@ -49,14 +49,33 @@
       justify-content: space-between;
       padding: 0 5%;
       z-index: 100;
-      transition: background .3s, box-shadow .3s;
+      transition: background .4s, box-shadow .4s, backdrop-filter .4s;
     }
+    nav::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 15%; right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(6,182,212,.55), transparent);
+      opacity: 0;
+      transition: opacity .4s;
+      pointer-events: none;
+    }
+    nav.scrolled::before { opacity: 1; }
     nav.scrolled {
-      background: rgba(17,17,17,.96);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 1px 0 var(--border);
+      background: rgba(8,8,8,.85);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 8px 40px rgba(0,0,0,.55);
     }
-    .nav-logo img { height: 54px; width: auto; display: block; filter: invert(1); }
+
+    /* Logo */
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 50px; width: auto; display: block; filter: invert(1); transition: transform .4s var(--ease); }
+    .nav-logo:hover img { transform: rotate(-8deg) scale(1.05); }
+    .nav-logo-name { font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--text); white-space: nowrap; line-height: 1; }
+    .nav-logo-name span { color: var(--accent); font-weight: 400; letter-spacing: .18em; }
+    body.light .nav-logo-name { color: var(--text); }
 
     /* Pill navbar */
     .nav-pill-wrap {
@@ -68,39 +87,40 @@
       display: flex;
       align-items: center;
       list-style: none;
-      padding: 6px;
-      background: rgba(255,255,255,.05);
+      padding: 5px;
+      background: rgba(255,255,255,.04);
       border-radius: 60px;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      box-shadow: 0 15px 35px rgba(0,0,0,.45);
-      border: .5px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+      border: .5px solid rgba(255,255,255,.13);
       position: relative;
-      gap: 2px;
+      gap: 1px;
     }
     .nav-pill-list li { position: relative; z-index: 1; }
     .pill-link {
       display: block;
-      padding: 8px 20px;
-      font-size: .82rem;
+      padding: 7px 18px;
+      font-size: .78rem;
       font-weight: 500;
-      letter-spacing: .03em;
-      color: rgba(255,255,255,.48);
+      letter-spacing: .05em;
+      color: rgba(255,255,255,.42);
       text-decoration: none;
       border-radius: 50px;
-      transition: color .3s;
+      transition: color .25s;
       white-space: nowrap;
     }
     .pill-link.active, .pill-link:hover { color: #fff; }
     .nav-indicator {
       position: absolute;
-      top: 6px;
-      height: calc(100% - 12px);
+      top: 5px;
+      height: calc(100% - 10px);
       background: var(--accent);
       border-radius: 50px;
-      transition: left .38s var(--ease), width .38s var(--ease);
+      transition: left .4s var(--ease), width .4s var(--ease);
       z-index: 0;
       pointer-events: none;
+      box-shadow: 0 0 18px rgba(6,182,212,.45);
     }
 
     .nav-burger {
@@ -222,6 +242,7 @@
     .wheel-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
     .wheel-svg--outer { color: var(--text); opacity: .06; animation: spin 28s linear infinite; }
     .wheel-svg--inner { width: 72%; height: 72%; inset: 14%; color: var(--accent); opacity: .15; animation: spin 16s linear infinite reverse; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     .hero-center-logo {
       position: absolute;
       inset: 22%;
@@ -230,7 +251,35 @@
       filter: invert(1);
       opacity: .7;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── HERO AURORA ─── */
+    .hero-aurora { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .hero-text, .hero-visual { position: relative; z-index: 1; }
+    .aurora-blob { position: absolute; border-radius: 50%; filter: blur(90px); }
+    .aurora-blob-1 {
+      width: 520px; height: 420px;
+      background: radial-gradient(circle, rgba(6,182,212,.22) 0%, transparent 70%);
+      top: -80px; left: -80px;
+      animation: aur1 14s ease-in-out infinite alternate;
+    }
+    .aurora-blob-2 {
+      width: 460px; height: 520px;
+      background: radial-gradient(circle, rgba(2,132,199,.18) 0%, transparent 70%);
+      bottom: -120px; right: 5%;
+      animation: aur2 18s ease-in-out infinite alternate;
+    }
+    .aurora-blob-3 {
+      width: 340px; height: 340px;
+      background: radial-gradient(circle, rgba(6,182,212,.12) 0%, transparent 70%);
+      top: 35%; left: 38%;
+      animation: aur3 11s ease-in-out infinite alternate;
+    }
+    @keyframes aur1 { to { transform: translate(70px, 55px) scale(1.12); } }
+    @keyframes aur2 { to { transform: translate(-55px, -70px) scale(1.08); } }
+    @keyframes aur3 { to { transform: translate(35px, -45px) scale(.88); } }
+    body.light .aurora-blob-1 { background: radial-gradient(circle, rgba(6,182,212,.09) 0%, transparent 70%); }
+    body.light .aurora-blob-2 { background: radial-gradient(circle, rgba(2,132,199,.07) 0%, transparent 70%); }
+    body.light .aurora-blob-3 { background: radial-gradient(circle, rgba(6,182,212,.06) 0%, transparent 70%); }
 
     /* ─── SHARED ─── */
     .section { padding: 4.5rem 8%; }
@@ -338,6 +387,7 @@
       position: relative;
       cursor: zoom-in;
       scroll-snap-align: start;
+      transition: transform .3s var(--ease);
     }
     .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s var(--ease), filter .3s; filter: brightness(.82); }
     .gallery-card:hover img { transform: scale(1.07); filter: brightness(1); }
@@ -455,6 +505,7 @@
 
     /* ─── THEME TOGGLE ─── */
     .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-right::before { content: ''; width: 1px; height: 20px; background: linear-gradient(180deg, transparent, var(--border), transparent); margin-right: 2px; }
     .theme-toggle {
       width: 68px; height: 32px;
       background: rgba(255,255,255,.08);
@@ -498,8 +549,9 @@
       --border:  rgba(0,0,0,.12);
     }
     /* Nav */
-    body.light nav { background: rgba(242,241,236,.75); backdrop-filter: blur(14px); }
-    body.light nav.scrolled { background: rgba(242,241,236,.97); box-shadow: 0 1px 0 rgba(0,0,0,.1); }
+    body.light nav { background: rgba(242,241,236,.6); backdrop-filter: blur(20px); }
+    body.light nav.scrolled { background: rgba(242,241,236,.92); backdrop-filter: blur(24px) saturate(160%); box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 8px 40px rgba(0,0,0,.1); }
+    body.light nav::before { background: linear-gradient(90deg, transparent, rgba(6,182,212,.35), transparent); }
     body.light .nav-logo img,
     body.light .hero-center-logo { filter: none; }
     body.light .nav-burger span { background: var(--text); }
@@ -546,6 +598,45 @@
     /* Info list icons already covered by .info-icon override above */
     /* Faint line color */
     body.light .about-img-accent { border-color: var(--accent); }
+
+    /* ─── GOOGLE BADGE ─── */
+    .google-badge { display: inline-flex; align-items: center; gap: .45rem; font-size: .78rem; color: var(--mid); }
+    .google-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .google-badge-stars { color: #FBBF24; font-size: .8rem; letter-spacing: .03em; }
+    .google-badge strong { color: var(--text); }
+    .google-badge-sep { opacity: .35; }
+
+    /* ─── FLOATING BUTTONS ─── */
+    .float-wrap {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      z-index: 90; display: flex; flex-direction: column; align-items: flex-end; gap: .55rem;
+      pointer-events: none;
+    }
+    .float-top-btn, .float-cta-btn {
+      pointer-events: all;
+      border: none; cursor: pointer; font-family: inherit;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .4s var(--ease), transform .4s var(--ease), box-shadow .25s, background .25s;
+    }
+    .float-top-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--bg-alt); border: 1px solid var(--border);
+      color: var(--text); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 14px rgba(0,0,0,.25);
+    }
+    .float-top-btn svg { width: 18px; height: 18px; }
+    .float-top-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-3px) !important; }
+    .float-cta-btn {
+      display: flex; align-items: center; gap: .45rem;
+      padding: .7rem 1.25rem; border-radius: 50px;
+      background: var(--accent); color: #fff; text-decoration: none;
+      font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+      box-shadow: 0 4px 22px rgba(6,182,212,.4);
+    }
+    .float-cta-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .float-cta-btn:hover { box-shadow: 0 8px 28px rgba(6,182,212,.55); transform: translateY(-3px) !important; }
+    .float-top-btn.show, .float-cta-btn.show { opacity: 1; transform: translateY(0); }
+    body.light .float-top-btn { background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.12); }
 
     /* ─── SCROLL ANIMATIONS ─── */
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -601,6 +692,7 @@
 <nav id="navbar">
   <a href="#top" class="nav-logo">
     <img src="assets/images/logo.png" alt="Zibi Cyclist">
+    <span class="nav-logo-name">ZIBI<span>CYCLIST</span></span>
   </a>
   <div class="nav-pill-wrap">
     <ul class="nav-pill-list" id="pillList">
@@ -624,6 +716,7 @@
   </div>
 </nav>
 
+
 <div class="nav-mobile" id="mobileMenu">
   <a href="#o-mnie">O mnie</a>
   <a href="#uslugi">Usługi</a>
@@ -632,14 +725,30 @@
   <a href="#kontakt">Kontakt</a>
 </div>
 
+<!-- FLOATING BUTTONS -->
+<div class="float-wrap" aria-hidden="true">
+  <button class="float-top-btn" id="floatTop" aria-label="Wróć na górę">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <a class="float-cta-btn" id="floatCta" href="#kontakt">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12 19.79 19.79 0 01.5 3.38 2 2 0 012.5 1.22h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.25-1.84a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Umów serwis
+  </a>
+</div>
+
 <!-- PAGE WRAP – max-width centered -->
 <div class="page-wrap">
 
   <!-- HERO -->
   <section id="top" class="hero">
+    <div class="hero-aurora" aria-hidden="true">
+      <div class="aurora-blob aurora-blob-1"></div>
+      <div class="aurora-blob aurora-blob-2"></div>
+      <div class="aurora-blob aurora-blob-3"></div>
+    </div>
     <div class="hero-text">
       <span class="hero-eyebrow">Serwis Rowerowy · Zgórsko</span>
-      <h1 class="hero-title">ZIBI <em>CYCLIST</em></h1>
+      <h1 class="hero-title">ZIBI<em>CYCLIST</em></h1>
       <p class="hero-sub">Twój rower to moja pasja. Profesjonalny serwis, naprawa i doradztwo — bo każdy rower zasługuje na najlepszą opiekę.</p>
       <a href="#kontakt" class="btn">Umów serwis</a>
       <a href="#uslugi"  class="btn btn-outline">Moje usługi</a>
@@ -746,7 +855,7 @@
     <div class="h-section-head fade-up">
       <div>
         <span class="eyebrow">Galeria</span>
-        <h2 class="section-title" style="margin-bottom:0">Moja praca w obrazach</h2>
+        <h2 class="section-title" style="margin-bottom:0">Moje realizacje</h2>
       </div>
     </div>
     <div class="scroll-wrap gallery-scroll-wrap">
@@ -779,7 +888,14 @@
     <div class="h-section-head fade-up">
       <div>
         <span class="eyebrow">Opinie</span>
-        <h2 class="section-title" style="margin-bottom:0">Co mówią moi klienci</h2>
+        <h2 class="section-title" style="margin-bottom:.6rem">Co mówią moi klienci</h2>
+        <div class="google-badge">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          <span class="google-badge-stars">★★★★★</span>
+          <strong>4.9</strong>
+          <span class="google-badge-sep">·</span>
+          <span>72 opinie w Google</span>
+        </div>
       </div>
     </div>
     <div class="scroll-wrap reviews-scroll-wrap">
@@ -985,7 +1101,21 @@
   const navbar = document.getElementById('navbar');
   addEventListener('scroll', onScroll, {passive:true});
 
-  // ── Smooth scroll z offsetem pod navbar
+// ── Smooth scroll (własna animacja – działa wszędzie)
+  function smoothScroll(targetY, duration) {
+    const startY = window.scrollY;
+    const dist = targetY - startY;
+    let t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      const p = Math.min((ts - t0) / duration, 1);
+      const ease = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
+      window.scrollTo(0, startY + dist * ease);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href');
@@ -996,7 +1126,7 @@
       const top = id === '#top'
         ? 0
         : target.getBoundingClientRect().top + window.scrollY - navbar.offsetHeight - 8;
-      window.scrollTo({ top, behavior: 'smooth' });
+      smoothScroll(top, 800);
     });
   });
 
@@ -1039,7 +1169,6 @@
     link.classList.add('active');
   }
   requestAnimationFrame(() => setIndicator(pillLinks[0]));
-  pillLinks.forEach(link => link.addEventListener('click', function() { setIndicator(this); }));
 
   function onScroll() {
     navbar.classList.toggle('scrolled', scrollY > 30);
@@ -1048,7 +1177,7 @@
       const el = document.getElementById(id);
       if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) current = id;
     });
-    if (!current) return;
+    if (!current) { if (window.scrollY < 80) setIndicator(pillLinks[0]); return; }
     const match = pillLinks.find(l => l.getAttribute('href') === '#' + current);
     if (match && !match.classList.contains('active')) setIndicator(match);
   }
@@ -1056,7 +1185,21 @@
   // ── Horizontal scroll arrows
   function scrollTrack(trackId, dir) {
     const t = document.getElementById(trackId);
-    t.scrollBy({ left: dir * t.clientWidth * 0.75, behavior: 'smooth' });
+    const startX  = t.scrollLeft;
+    const targetX = Math.max(0, Math.min(startX + dir * t.clientWidth * 0.78, t.scrollWidth - t.clientWidth));
+    const dist = targetX - startX;
+    t.style.scrollSnapType = 'none';
+    let t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      const p = Math.min((ts - t0) / 550, 1);
+      const ease = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
+      t.scrollLeft = startX + dist * ease;
+      if (trackId === 'galleryTrack') updateGalleryWave();
+      if (p < 1) { requestAnimationFrame(step); }
+      else { t.style.scrollSnapType = ''; }
+    }
+    requestAnimationFrame(step);
   }
   function updateArrows(track, prev, next) {
     prev.classList.toggle('hidden', track.scrollLeft <= 4);
@@ -1071,6 +1214,22 @@
   galTrack.addEventListener('scroll', () => updateArrows(galTrack, galPrevBtn, galNextBtn), {passive:true});
   updateArrows(galTrack, galPrevBtn, galNextBtn);
 
+  // ── Gallery wave effect
+  const galCards = [...galTrack.querySelectorAll('.gallery-card')];
+  function updateGalleryWave() {
+    const center = galTrack.scrollLeft + galTrack.clientWidth / 2;
+    const range  = galTrack.clientWidth * 0.65;
+    galCards.forEach(card => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const t = Math.max(0, 1 - Math.abs(cardCenter - center) / range);
+      const lift  = t * t * 22;
+      const scale = 1 + t * 0.03;
+      card.style.transform = `translateY(-${lift}px) scale(${scale})`;
+    });
+  }
+  galTrack.addEventListener('scroll', updateGalleryWave, {passive:true});
+  updateGalleryWave();
+
   const revTrack = document.getElementById('reviewsTrack');
   const revPrevBtn = document.getElementById('revPrev');
   const revNextBtn = document.getElementById('revNext');
@@ -1078,6 +1237,18 @@
   revNextBtn.addEventListener('click', () => scrollTrack('reviewsTrack',  1));
   revTrack.addEventListener('scroll', () => updateArrows(revTrack, revPrevBtn, revNextBtn), {passive:true});
   updateArrows(revTrack, revPrevBtn, revNextBtn);
+
+  // ── Floating buttons
+  const floatCta = document.getElementById('floatCta');
+  const floatTop = document.getElementById('floatTop');
+  function updateFloat() {
+    const show = window.scrollY > window.innerHeight * 0.55;
+    floatCta.classList.toggle('show', show);
+    floatTop.classList.toggle('show', show);
+  }
+  addEventListener('scroll', updateFloat, {passive:true});
+  updateFloat();
+  floatTop.addEventListener('click', () => smoothScroll(0, 700));
 
   // ── Lightbox
   const galleryCards = [...document.querySelectorAll('.gallery-card')];
