@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zibi Cyclist – profesjonalny serwis rowerowy w Zgórsku. Naprawa, regulacja, transport roweru.">
+  <title>Zibi Cyclist – Serwis Rowerowy | Zgórsko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #111111;
+      --bg-alt:  #1a1a1a;
+      --bg-deep: #0a0a0a;
+      --text:    #e8e6df;
+      --mid:     #888888;
+      --faint:   #444444;
+      --accent:  #E86A00;
+      --border:  rgba(255,255,255,0.08);
+      --nav-h:   72px;
+      --ease:    cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: auto; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── PAGE WRAP ─── */
+    .page-wrap {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      z-index: 100;
+      transition: background .3s, box-shadow .3s;
+    }
+    nav.scrolled {
+      background: rgba(17,17,17,.96);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo img { height: 54px; width: auto; display: block; filter: invert(1); }
+
+    /* Pill navbar */
+    .nav-pill-wrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-pill-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      padding: 6px;
+      background: rgba(255,255,255,.05);
+      border-radius: 60px;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.45);
+      border: .5px solid rgba(255,255,255,.12);
+      position: relative;
+      gap: 2px;
+    }
+    .nav-pill-list li { position: relative; z-index: 1; }
+    .pill-link {
+      display: block;
+      padding: 8px 20px;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      color: rgba(255,255,255,.48);
+      text-decoration: none;
+      border-radius: 50px;
+      transition: color .3s;
+      white-space: nowrap;
+    }
+    .pill-link.active, .pill-link:hover { color: #fff; }
+    .nav-indicator {
+      position: absolute;
+      top: 6px;
+      height: calc(100% - 12px);
+      background: var(--accent);
+      border-radius: 50px;
+      transition: left .38s var(--ease), width .38s var(--ease);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-burger span { display: block; width: 24px; height: 2px; background: var(--text); transition: all .3s; }
+    .nav-burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.active span:nth-child(2) { opacity: 0; }
+    .nav-burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: var(--bg);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 88svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: calc(var(--nav-h) + 1rem) 8% 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 30px; height: 1.5px; background: var(--accent); }
+    .hero-title { font-size: clamp(2.6rem, 5.2vw, 5rem); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; margin-bottom: 1.25rem; white-space: nowrap; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: clamp(1rem, 1.4vw, 1.15rem); color: var(--mid); max-width: 420px; line-height: 1.75; margin-bottom: 2.5rem; }
+
+    .btn {
+      display: inline-block;
+      padding: .85rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: inherit;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s var(--ease), box-shadow .3s, background .25s;
+      animation: btn-pulse 2.8s ease infinite;
+    }
+    /* shine sweep on primary */
+    .btn:not(.btn-outline)::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -80%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+      transform: skewX(-18deg);
+      transition: left .55s ease;
+    }
+    .btn:not(.btn-outline):hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(232,106,0,.55);
+      background: #f07200;
+      animation: none;
+    }
+    .btn:not(.btn-outline):hover::before { left: 130%; }
+    @keyframes btn-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232,106,0,.5); }
+      55%       { box-shadow: 0 0 0 12px rgba(232,106,0,0); }
+    }
+    /* outline button */
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(255,255,255,.3);
+      margin-left: 1rem;
+      animation: none;
+      transition: background .3s, color .3s, border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(232,106,0,.45);
+    }
+
+    /* Hero visual */
+    .hero-visual { display: flex; align-items: center; justify-content: center; }
+    .hero-wheel-wrap { position: relative; width: min(46vw, 500px); height: min(46vw, 500px); }
+    .wheel-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .wheel-svg--outer { color: var(--text); opacity: .06; animation: spin 28s linear infinite; }
+    .wheel-svg--inner { width: 72%; height: 72%; inset: 14%; color: var(--accent); opacity: .15; animation: spin 16s linear infinite reverse; }
+    .hero-center-logo {
+      position: absolute;
+      inset: 22%;
+      width: 56%; height: 56%;
+      object-fit: contain;
+      filter: invert(1);
+      opacity: .7;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── SHARED ─── */
+    .section { padding: 4.5rem 8%; }
+    .section--alt  { background: var(--bg-alt); }
+    .section--deep { background: var(--bg-deep); }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .eyebrow { display: inline-flex; align-items: center; gap: .75rem; font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .85rem; }
+    .eyebrow::before { content: ''; display: block; width: 26px; height: 1.5px; background: var(--accent); }
+    .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 1.5rem; color: var(--text); }
+
+    /* ─── O MNIE ─── */
+    .about-grid { display: grid; grid-template-columns: auto 1fr; gap: 4rem; align-items: center; }
+    .about-img-wrap { position: relative; width: 260px; flex-shrink: 0; }
+    .about-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: center 15%; display: block; }
+    .about-img-accent { position: absolute; bottom: -1rem; right: -1rem; width: 55%; height: 55%; border: 2px solid var(--accent); z-index: -1; }
+    .about-text p { color: var(--mid); font-size: 1.025rem; line-height: 1.85; margin-bottom: 1.25rem; }
+
+    /* ─── USŁUGI ─── */
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); margin-top: 2rem; }
+    .service-card { padding: 2.5rem 2rem; border-right: 1px solid var(--border); position: relative; overflow: hidden; text-align: center; }
+    .service-card:last-child { border-right: none; }
+    .service-card::after { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateY(101%); transition: transform .45s var(--ease); z-index: 0; }
+    .service-card:hover::after { transform: translateY(0); }
+    .service-card > * { position: relative; z-index: 1; }
+    .service-img-wrap { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem; border: 2px solid var(--border); flex-shrink: 0; transition: border-color .3s; }
+    .service-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s var(--ease); }
+    .service-card:hover .service-img { transform: scale(1.1); }
+    .service-card:hover .service-img-wrap { border-color: rgba(255,255,255,.3); }
+    .service-name { font-size: 1.15rem; font-weight: 700; line-height: 1.2; margin-bottom: .65rem; color: var(--text); transition: color .3s; }
+    .service-desc { font-size: .88rem; color: var(--mid); line-height: 1.7; transition: color .3s; }
+    .service-card:hover .service-name { color: #fff; }
+    .service-card:hover .service-desc { color: rgba(255,255,255,.75); }
+
+    /* ─── HORIZONTAL SCROLL (gallery + reviews) ─── */
+    .h-section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 8%;
+      margin-bottom: 1.5rem;
+    }
+    /* Overlay scroll arrows */
+    .scroll-wrap { position: relative; }
+    .scroll-wrap::before,
+    .scroll-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 110px;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .35s;
+    }
+    .gallery-scroll-wrap::before { left: 0; background: linear-gradient(to right, var(--bg-alt) 15%, transparent); }
+    .gallery-scroll-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg-alt) 15%, transparent); }
+    .reviews-scroll-wrap::before { left: 0; background: linear-gradient(to right, var(--bg) 15%, transparent); }
+    .reviews-scroll-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg) 15%, transparent); }
+    .scroll-wrap:hover::before,
+    .scroll-wrap:hover::after { opacity: 1; }
+
+    .track-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(12,12,12,.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.8);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      opacity: 0;
+      transition: opacity .3s, background .22s, border-color .22s, transform .22s;
+    }
+    .scroll-wrap:hover .track-arrow { opacity: 1; }
+    .track-arrow:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-50%) scale(1.08); }
+    .track-arrow--prev { left: 1.25rem; }
+    .track-arrow--next { right: 1.25rem; }
+    .track-arrow.hidden { opacity: 0 !important; pointer-events: none; }
+
+    /* ─── GALLERY ─── */
+    .gallery-track {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 8% 4px;
+    }
+    .gallery-track::-webkit-scrollbar { display: none; }
+
+    .gallery-card {
+      flex-shrink: 0;
+      width: clamp(220px, calc(33.333% - 8px - 5.333%), 400px);
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+      scroll-snap-align: start;
+    }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s var(--ease), filter .3s; filter: brightness(.82); }
+    .gallery-card:hover img { transform: scale(1.07); filter: brightness(1); }
+    .gal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; transition: background .3s; }
+    .gallery-card:hover .gal-overlay { background: rgba(0,0,0,.3); }
+    .gal-overlay svg { width: 28px; height: 28px; color: #fff; opacity: 0; transform: scale(.6); transition: all .3s; }
+    .gallery-card:hover .gal-overlay svg { opacity: 1; transform: scale(1); }
+
+    /* ─── REVIEWS ─── */
+    .reviews-track {
+      display: grid;
+      grid-template-rows: repeat(2, auto);
+      grid-auto-flow: column;
+      grid-auto-columns: clamp(260px, 34vw, 440px);
+      gap: 12px 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 8% 4px;
+    }
+    .reviews-track::-webkit-scrollbar { display: none; }
+    .review-card {
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      position: relative;
+      scroll-snap-align: start;
+    }
+    .review-quote { position: absolute; top: 1rem; right: 1.5rem; font-size: 5rem; font-family: Georgia, serif; color: rgba(255,255,255,.04); line-height: 1; user-select: none; }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+    .star { width: 15px; height: 15px; fill: var(--accent); }
+    .review-text { font-size: .88rem; color: var(--mid); line-height: 1.75; font-style: italic; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+    .review-author { font-size: .85rem; font-weight: 600; letter-spacing: .04em; color: var(--text); }
+
+    /* ─── KONTAKT ─── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: stretch; }
+    .contact-map { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); min-height: 420px; }
+    .contact-map iframe { width: 100%; height: 100%; min-height: 420px; display: block; border: none; filter: invert(1) hue-rotate(180deg) grayscale(25%) brightness(.82); }
+    .info-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: .85rem; }
+    .info-item { display: flex; gap: 1rem; align-items: center; }
+    .info-icon { width: 40px; height: 40px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 50%; }
+    .info-icon svg { width: 17px; height: 17px; color: var(--accent); }
+    .info-val { font-size: .93rem; color: var(--mid); }
+    .info-val a { color: var(--mid); text-decoration: none; }
+    .info-val a:hover { color: var(--accent); }
+
+    /* Contact link cards */
+    .contact-links { display: flex; flex-direction: column; gap: 10px; padding-top: .5rem; }
+    .clink {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+    }
+    .clink::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: translateY(101%);
+      transition: transform .42s var(--ease);
+      z-index: 0;
+    }
+    .clink:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 8px 28px rgba(232,106,0,.22); }
+    .clink:hover::before { transform: translateY(0); }
+    .clink > * { position: relative; z-index: 1; }
+    .clink-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: border-color .3s, background .3s;
+    }
+    .clink-icon svg { width: 19px; height: 19px; color: var(--accent); transition: color .3s; }
+    .clink:hover .clink-icon { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.15); }
+    .clink:hover .clink-icon svg { color: #fff; }
+    .clink-body { flex: 1; }
+    .clink-label { display: block; font-size: .64rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mid); margin-bottom: 2px; transition: color .3s; }
+    .clink-val { display: block; font-size: .92rem; font-weight: 500; color: var(--text); transition: color .3s; }
+    .clink:hover .clink-label { color: rgba(255,255,255,.6); }
+    .clink:hover .clink-val { color: #fff; }
+    .clink-arrow { width: 16px; height: 16px; color: var(--faint); transition: transform .3s, color .3s; flex-shrink: 0; }
+    .clink:hover .clink-arrow { transform: translateX(4px); color: #fff; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--bg-deep); border-top: 1px solid var(--border); padding: 2rem 8%; display: flex; align-items: center; justify-content: space-between; font-size: .78rem; color: var(--faint); letter-spacing: .04em; }
+    footer img { height: 36px; filter: invert(1); opacity: .3; }
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { color: var(--mid); }
+
+    /* Lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.97); z-index: 200; display: none; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lb-img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+    .lb-btn { position: absolute; background: none; border: 1px solid rgba(255,255,255,.2); color: #fff; cursor: pointer; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; transition: background .2s; }
+    .lb-btn:hover { background: rgba(255,255,255,.1); }
+    .lb-close { top: 1.5rem; right: 1.5rem; font-size: 1.6rem; }
+    .lb-prev  { top: 50%; left: 1.5rem; transform: translateY(-50%); }
+    .lb-next  { top: 50%; right: 1.5rem; transform: translateY(-50%); }
+
+    /* ─── SMOOTH SCROLL OFFSET ─── */
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+    /* ─── THEME TOGGLE ─── */
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .theme-toggle {
+      width: 52px; height: 26px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5px;
+      transition: background .35s, border-color .35s;
+    }
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: translateX(26px);
+      transition: transform .4s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 1;
+    }
+    body.light .theme-toggle-thumb { transform: translateX(0); }
+    .ti-sun, .ti-moon { width: 12px; height: 12px; position: relative; z-index: 2; transition: color .3s; stroke-width: 2.2; }
+    .ti-sun  { color: rgba(255,255,255,.28); }
+    .ti-moon { color: #fff; }
+    body.light .ti-sun  { color: #fff; }
+    body.light .ti-moon { color: rgba(0,0,0,.3); }
+    body.light .theme-toggle { background: rgba(0,0,0,.07); border-color: rgba(0,0,0,.15); }
+
+    /* ─── LIGHT THEME ─── */
+    body.light {
+      --bg:      #f2f1ec;
+      --bg-alt:  #e8e7e2;
+      --bg-deep: #d8d7d0;
+      --text:    #1a1a1a;
+      --mid:     #555555;
+      --faint:   #999999;
+      --border:  rgba(0,0,0,.12);
+    }
+    /* Nav */
+    body.light nav { background: rgba(242,241,236,.75); backdrop-filter: blur(14px); }
+    body.light nav.scrolled { background: rgba(242,241,236,.97); box-shadow: 0 1px 0 rgba(0,0,0,.1); }
+    body.light .nav-logo img,
+    body.light .hero-center-logo { filter: none; }
+    body.light .nav-burger span { background: var(--text); }
+    /* Pill nav */
+    body.light .nav-pill-list { background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.12); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+    body.light .pill-link { color: rgba(0,0,0,.42); }
+    body.light .pill-link.active,
+    body.light .pill-link:hover { color: #fff; }
+    body.light .nav-mobile { background: var(--bg); }
+    body.light .nav-mobile a { color: var(--text); }
+    /* Icons z białymi obramowaniami */
+    body.light .info-icon { border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.04); }
+    body.light .clink-icon { border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.04); }
+    body.light .service-img-wrap { border-color: rgba(0,0,0,.12); }
+    /* Review cards */
+    body.light .review-card { background: #fff; border-color: rgba(0,0,0,.1); }
+    body.light .review-quote { color: rgba(0,0,0,.06); }
+    /* Stopka */
+    body.light footer { color: var(--mid); }
+    body.light footer img { filter: none; opacity: .4; }
+    body.light footer a { color: var(--mid); }
+    body.light footer a:hover { color: var(--text); }
+    body.light .contact-map iframe { filter: none; }
+    /* Hover kolorów na jasnym tle */
+    body.light .clink:hover .clink-label,
+    body.light .clink:hover .clink-val,
+    body.light .clink:hover .clink-arrow { color: #fff; }
+    /* Track arrows */
+    body.light .track-arrow { background: rgba(242,241,236,.9); border-color: rgba(0,0,0,.15); color: var(--text); }
+    body.light .track-arrow:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    /* Lightbox buttons */
+    body.light .lb-btn { color: #fff; }
+    /* Outline button border invisible on light bg */
+    body.light .btn-outline { border-color: rgba(0,0,0,.28); color: var(--text); }
+    body.light .btn-outline:hover { border-color: var(--accent); color: #fff; }
+    /* Contact link cards: flat white blends in — give a subtle lift */
+    body.light .clink { background: rgba(255,255,255,.7); border-color: rgba(0,0,0,.1); }
+    body.light .clink:hover { background: var(--accent); }
+    /* Sections: add subtle top/bottom separator lines for clarity */
+    body.light .section--alt { border-top: 1px solid rgba(0,0,0,.07); border-bottom: 1px solid rgba(0,0,0,.07); }
+    /* Service cards: make grid lines visible */
+    body.light .services-grid { border-color: rgba(0,0,0,.1); }
+    body.light .service-card { border-right-color: rgba(0,0,0,.1); }
+    /* Info list icons already covered by .info-icon override above */
+    /* Faint line color */
+    body.light .about-img-accent { border-color: var(--accent); }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up[data-delay="1"] { transition-delay: .1s; }
+    .fade-up[data-delay="2"] { transition-delay: .2s; }
+    .fade-up[data-delay="3"] { transition-delay: .3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .gallery-card { width: clamp(220px, 48vw, 380px); }
+      .review-card  { width: clamp(280px, 70vw, 480px); }
+    }
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: calc(var(--nav-h) + 2rem); min-height: auto; }
+      .hero-visual { display: none; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-sub { margin-inline: auto; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-img-wrap { width: 200px; margin: 0 auto; }
+      .about-img { aspect-ratio: 1/1; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-img-accent { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-card:last-child { border-bottom: none; }
+      .nav-pill-wrap { display: none; }
+      .nav-burger { display: flex; }
+      footer { flex-direction: column; gap: .75rem; text-align: center; }
+    }
+    @media (max-width: 520px) {
+      .gallery-card { width: 82vw; }
+      .reviews-track { grid-template-rows: 1fr; grid-auto-columns: 85vw; }
+      .section { padding: 3.5rem 5%; }
+      .h-section-head { padding: 0 5%; }
+      .gallery-track, .reviews-track { padding-left: 5%; padding-right: 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (outside page-wrap – fixed full width) -->
+<nav id="navbar">
+  <a href="#top" class="nav-logo">
+    <img src="assets/images/logo.png" alt="Zibi Cyclist">
+  </a>
+  <div class="nav-pill-wrap">
+    <ul class="nav-pill-list" id="pillList">
+      <li><a href="#o-mnie"  class="pill-link">O mnie</a></li>
+      <li><a href="#uslugi"  class="pill-link">Usługi</a></li>
+      <li><a href="#galeria" class="pill-link">Galeria</a></li>
+      <li><a href="#opinie"  class="pill-link">Opinie</a></li>
+      <li><a href="#kontakt" class="pill-link">Kontakt</a></li>
+      <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Zmień motyw">
+      <svg class="ti-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.07" y2="7.07"/><line x1="16.93" y1="16.93" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.07" y2="16.93"/><line x1="16.93" y1="7.07" x2="19.07" y2="4.93"/></svg>
+      <div class="theme-toggle-thumb"></div>
+      <svg class="ti-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <button class="nav-burger" id="burger" aria-label="Otwórz menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="mobileMenu">
+  <a href="#o-mnie">O mnie</a>
+  <a href="#uslugi">Usługi</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#opinie">Opinie</a>
+  <a href="#kontakt">Kontakt</a>
+</div>
+
+<!-- PAGE WRAP – max-width centered -->
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Serwis Rowerowy · Zgórsko</span>
+      <h1 class="hero-title">ZIBI <em>CYCLIST</em></h1>
+      <p class="hero-sub">Twój rower to moja pasja. Profesjonalny serwis, naprawa i doradztwo — bo każdy rower zasługuje na najlepszą opiekę.</p>
+      <a href="#kontakt" class="btn">Umów serwis</a>
+      <a href="#uslugi"  class="btn btn-outline">Moje usługi</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-wheel-wrap">
+        <svg class="wheel-svg wheel-svg--outer" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="5"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="100" cy="100" r="12" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="100" cy="100" r="4" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.2">
+            <g transform="rotate(0 100 100)">   <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(22.5 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(45 100 100)">   <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(67.5 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(90 100 100)">   <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(112.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(135 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(157.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(180 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(202.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(225 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(247.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(270 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(292.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(315 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(337.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
+          </g>
+        </svg>
+        <svg class="wheel-svg wheel-svg--inner" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="100" cy="100" r="12" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="100" cy="100" r="4" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.5">
+            <g transform="rotate(0 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(45 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(90 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(135 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(180 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(225 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(270 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <g transform="rotate(315 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+          </g>
+        </svg>
+        <!-- Logo centered inside wheel – full, not clipped -->
+        <img class="hero-center-logo" src="assets/images/logo.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- O MNIE -->
+  <section id="o-mnie" class="section section--alt">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap fade-up">
+          <img class="about-img" src="assets/images/owner.jpg" alt="Zibi – właściciel serwisu">
+          <div class="about-img-accent"></div>
+        </div>
+        <div class="about-text">
+          <span class="eyebrow fade-up">O mnie</span>
+          <h2 class="section-title fade-up" data-delay="1">Twój rower to moja pasja</h2>
+          <p class="fade-up" data-delay="2">Serwis Zibi Cyclist to miejsce, gdzie moja miłość do kolarstwa spotyka się z pasją do mechaniki. To spełnione marzenie o tym, żeby robić w życiu to, co naprawdę kocham. Kiedyś kolarstwo odmieniło moje życie, teraz chcę żeby zmieniło także Twoje.</p>
+          <p class="fade-up" data-delay="2">Rower powinien dawać Ci radość. Powinien działać prawidłowo i... powinien Ci się podobać. Tylko wtedy zakochasz się w nim i nie będziesz chciał z niego zsiadać. To właśnie mój cel i misja, którą kieruję się każdego dnia!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USŁUGI -->
+  <section id="uslugi" class="section">
+    <div class="container">
+      <span class="eyebrow fade-up">Co robię</span>
+      <h2 class="section-title fade-up" data-delay="1">Moje usługi</h2>
+      <div class="services-grid fade-up" data-delay="2">
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img class="service-img" src="assets/images/p2.jpg" alt="Serwis i naprawa">
+          </div>
+          <div class="service-name">Serwis i naprawa</div>
+          <p class="service-desc">Kompleksowe przeglądy, regulacje przerzutek i hamulców, wymiana podzespołów. Twój rower wróci w pełnej sprawności.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img class="service-img" src="assets/images/transportzibicyclist.jpg" alt="Transport roweru" style="object-position: center 30%;">
+          </div>
+          <div class="service-name">Transport roweru</div>
+          <p class="service-desc">Odbiór i dostawa roweru pod wskazany adres. Wygodne rozwiązanie, gdy nie możesz do nas przyjechać.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img class="service-img" src="assets/images/owner.jpg" alt="Pomoc i doradztwo" style="object-position: center 15%;">
+          </div>
+          <div class="service-name">Pomoc i doradztwo</div>
+          <p class="service-desc">Nie wiesz co kupić? Chętnie pomogę dobrać sprzęt do Twoich potrzeb i budżetu — bez zbędnej presji.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA – horizontal scroll -->
+  <section id="galeria" class="section section--alt" style="padding-left:0;padding-right:0">
+    <div class="h-section-head fade-up">
+      <div>
+        <span class="eyebrow">Galeria</span>
+        <h2 class="section-title" style="margin-bottom:0">Moja praca w obrazach</h2>
+      </div>
+    </div>
+    <div class="scroll-wrap gallery-scroll-wrap">
+      <button class="track-arrow track-arrow--prev" id="galPrev" aria-label="Poprzednie">&#8592;</button>
+      <div class="gallery-track" id="galleryTrack">
+      <div class="gallery-card" data-src="assets/gallery/g1.jpg"><img src="assets/gallery/g1.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g2.jpg"><img src="assets/gallery/g2.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g3.jpg"><img src="assets/gallery/g3.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g4.jpg"><img src="assets/gallery/g4.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g5.jpg"><img src="assets/gallery/g5.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g6.jpg"><img src="assets/gallery/g6.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g7.jpg"><img src="assets/gallery/g7.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g8.jpg"><img src="assets/gallery/g8.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g9.jpg"><img src="assets/gallery/g9.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g10.jpg"><img src="assets/gallery/g10.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g11.jpg"><img src="assets/gallery/g11.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g12.jpg"><img src="assets/gallery/g12.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g13.jpg"><img src="assets/gallery/g13.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g14.jpg"><img src="assets/gallery/g14.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g15.jpg"><img src="assets/gallery/g15.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g16.jpg"><img src="assets/gallery/g16.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/gallery/g17.jpg"><img src="assets/gallery/g17.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      </div>
+      <button class="track-arrow track-arrow--next" id="galNext" aria-label="Następne">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- OPINIE – horizontal scroll -->
+  <section id="opinie" class="section" style="padding-left:0;padding-right:0">
+    <div class="h-section-head fade-up">
+      <div>
+        <span class="eyebrow">Opinie</span>
+        <h2 class="section-title" style="margin-bottom:0">Co mówią moi klienci</h2>
+      </div>
+    </div>
+    <div class="scroll-wrap reviews-scroll-wrap">
+      <button class="track-arrow track-arrow--prev" id="revPrev" aria-label="Poprzednie">&#8592;</button>
+      <div class="reviews-track" id="reviewsTrack">
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Polecam bardzo fachowe i kompleksowe podejście do serwisu rowerowego. Jestem pod wrażeniem i bardzo zadowolony.</p>
+        <div class="review-author">Tomasz</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Zbyszek ogarnia temat, doradzi, zrobi co trzeba oraz powie co i jak. Fajne jest to, że jest do dyspozycji w ciągu dnia praktycznie w każdym momencie. Dzięki za serwis roweru. Na pewno wrócę.</p>
+        <div class="review-author">Mariusz</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Taki serwis to marzenie każdego rowerzysty. Rower zrobiony jak dla siebie, nie znam dokładniejszego mechanika. Nie naprawia tylko tego, z czym się przyszło, ale robi pełny przegląd, czyszczenie, smarowanie. Rower odbiera się w stanie lepszym niż ze sklepu.</p>
+        <div class="review-author">Wioletta</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Profesjonalnie, konkretnie, rzetelnie i na temat... Polecam!</p>
+        <div class="review-author">Adrian</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Rower rozkręcony do ostatniej śrubki, przeczyszczony, nasmarowany, wyregulowany i idealnie przygotowany do połykania kilometrów. Zaangażowanie i pasja Zbyszka nie mieści się w jego warsztacie. Polecamy i z pewnością będziemy wracać.</p>
+        <div class="review-author">Bartek</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Trafiłem do Zibiego, bo chciałem szybko rozwiać moje podejrzenia związane z tarczówkami w moim rowerze. Profesjonalne podejście do tematu, trafna diagnoza problemu, przy okazji udało się wykryć i usunąć inne przypadłości. Wiesz, że na pewno następnym razem też będziesz serwisował rower w Zibi Cyclist. Polecam wszystkim ten serwis.</p>
+        <div class="review-author">Robert</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Jestem bardzo pozytywnie zaskoczony podejściem do klienta. O wszystkim byłem na bieżąco informowany. Każdy detal obgadany na 10 stronę. Pełna fotorelacja z każdego etapu pracy. Przystępne ceny i jakość pracy jak i obsługi na bardzo wysokim poziomie. Polecam!</p>
+        <div class="review-author">Marcin</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Jestem zadowolony, że w końcu znalazłem mechanika z duszą i ogromną pasją. Mój rower przeszedł porządne rowerowe spa. Byłem informowany na bieżąco o wszystkim, a na koniec pełne zestawienie wykonanej pracy i dokumentacja zdjęciowa. Stałem się właśnie stałym klientem tego Pana.</p>
+        <div class="review-author">Paweł</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Świetnie przeprowadzony serwis, kontakt przez cały czas, dobór niezbędnych części ustalany na bieżąco. Efekt końcowy znakomity: rower mimo kilku sezonów intensywnej eksploatacji wygląda jak nowy. Mimo dystansu warto.</p>
+        <div class="review-author">Przemek</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Konkretny, szybki serwis, bardzo dobra komunikacja i co najważniejsze super wyczyszczony rower i wyregulowany jak trzeba. W razie pytań Pan wszystko dokładnie wyjaśni i doradzi. Polecam.</p>
+        <div class="review-author">Klaudia</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Bardzo konkretny człowiek! Zawsze pomoże gdy tylko trzeba! Polecam!</p>
+        <div class="review-author">Grzegorz</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Z czystym sercem polecam, myślałem że mój rower jest nie do odratowania, jednak ten Pan czyni cuda z rowerami. Jestem bardziej zadowolony niż w dniu zakupu ładnych parę lat temu.</p>
+        <div class="review-author">Dawid</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">„Pan od rowerów" to po prostu PROFESJONALISTA w czystej postaci. Sam przyjechał, sam zapakował materiał do pracy — wielki plus na starcie. Przez nieustający kontakt ocenił stan i zakres robót, skompletował potrzebne części, doradził fachowo co montować. Efekt WOW — rowery wróciły jak igły.</p>
+        <div class="review-author">Ula</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+        <p class="review-text">Zibi — mechanik z powołania. Polecam go w 100%. Rower jak z fabryki, wszystko zrobione od A do Z.</p>
+        <div class="review-author">Rafał</div>
+      </div>
+
+      </div>
+      <button class="track-arrow track-arrow--next" id="revNext" aria-label="Następne">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- KONTAKT – bez formularza, pill buttons -->
+  <section id="kontakt" class="section section--deep">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow fade-up">Kontakt</span>
+          <h2 class="section-title fade-up" data-delay="1">Skontaktuj się ze mną</h2>
+          <ul class="info-list">
+            <li class="info-item fade-up" data-delay="2">
+              <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="info-val">ul. Kwiatowa 8, 26-052 Zgórsko</div>
+            </li>
+            <li class="info-item fade-up" data-delay="2">
+              <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+              <div class="info-val">Pon – Sob &nbsp;·&nbsp; 8:00 – 18:00</div>
+            </li>
+          </ul>
+          <div class="contact-links fade-up" data-delay="2">
+            <a class="clink" href="tel:+48517619395">
+              <div class="clink-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12 19.79 19.79 0 01.5 3.38 2 2 0 012.5 1.22h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.25-1.84a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="clink-body">
+                <span class="clink-label">Telefon</span>
+                <span class="clink-val">+48 517 619 395</span>
+              </div>
+              <svg class="clink-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="clink" href="mailto:zibi.cyclist@gmail.com">
+              <div class="clink-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="clink-body">
+                <span class="clink-label">E-mail</span>
+                <span class="clink-val">zibi.cyclist@gmail.com</span>
+              </div>
+              <svg class="clink-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="clink" href="https://www.facebook.com/ZIBICYCLIST/" target="_blank" rel="noopener">
+              <div class="clink-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </div>
+              <div class="clink-body">
+                <span class="clink-label">Facebook</span>
+                <span class="clink-val">ZIBICYCLIST</span>
+              </div>
+              <svg class="clink-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="clink" href="https://maps.google.com/?q=ul.+Kwiatowa+8,+26-052+Zgórsko" target="_blank" rel="noopener">
+              <div class="clink-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="clink-body">
+                <span class="clink-label">Lokalizacja</span>
+                <span class="clink-val">ul. Kwiatowa 8, 26-052 Zgórsko</span>
+              </div>
+              <svg class="clink-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-map fade-up" data-delay="2">
+          <iframe
+            src="https://maps.google.com/maps?q=ul.+Kwiatowa+8,+26-052+Zgorsko&output=embed&hl=pl&z=15"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Lokalizacja Zibi Cyclist">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="assets/images/logo.png" alt="Zibi Cyclist">
+    <span>© 2026 Zibi Cyclist · ul. Kwiatowa 8, 26-052 Zgórsko</span>
+    <span>Strona wykonana przez: <a href="https://www.linkedin.com/in/bogdan-skubek-61b88a257/?locale=pl" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;">Bogdan Skubek <svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;opacity:.7;"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></span>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Zamknij">×</button>
+  <button class="lb-btn lb-prev"  id="lbPrev"  aria-label="Poprzednie">‹</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next"  id="lbNext"  aria-label="Następne">›</button>
+</div>
+
+<script>
+  // ── Navbar scroll
+  const navbar = document.getElementById('navbar');
+  addEventListener('scroll', onScroll, {passive:true});
+
+  // ── Smooth scroll z offsetem pod navbar
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = id === '#top'
+        ? 0
+        : target.getBoundingClientRect().top + window.scrollY - navbar.offsetHeight - 8;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // ── Mobile menu
+  const burger = document.getElementById('burger');
+  const mob    = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    mob.classList.toggle('open');
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('active');
+    mob.classList.remove('open');
+  }));
+
+  // ── Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  });
+
+  // ── Scroll animations
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // ── Pill navbar indicator
+  const pillLinks  = [...document.querySelectorAll('.pill-link')];
+  const indicator  = document.getElementById('navIndicator');
+  const sectionIds = ['o-mnie','uslugi','galeria','opinie','kontakt'];
+
+  function setIndicator(link) {
+    const li = link.parentElement;
+    indicator.style.width = li.offsetWidth + 'px';
+    indicator.style.left  = li.offsetLeft  + 'px';
+    pillLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  }
+  requestAnimationFrame(() => setIndicator(pillLinks[0]));
+  pillLinks.forEach(link => link.addEventListener('click', function() { setIndicator(this); }));
+
+  function onScroll() {
+    navbar.classList.toggle('scrolled', scrollY > 30);
+    let current = '';
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) current = id;
+    });
+    if (!current) return;
+    const match = pillLinks.find(l => l.getAttribute('href') === '#' + current);
+    if (match && !match.classList.contains('active')) setIndicator(match);
+  }
+
+  // ── Horizontal scroll arrows
+  function scrollTrack(trackId, dir) {
+    const t = document.getElementById(trackId);
+    t.scrollBy({ left: dir * t.clientWidth * 0.75, behavior: 'smooth' });
+  }
+  function updateArrows(track, prev, next) {
+    prev.classList.toggle('hidden', track.scrollLeft <= 4);
+    next.classList.toggle('hidden', track.scrollLeft >= track.scrollWidth - track.clientWidth - 4);
+  }
+
+  const galTrack = document.getElementById('galleryTrack');
+  const galPrevBtn = document.getElementById('galPrev');
+  const galNextBtn = document.getElementById('galNext');
+  galPrevBtn.addEventListener('click', () => scrollTrack('galleryTrack', -1));
+  galNextBtn.addEventListener('click', () => scrollTrack('galleryTrack',  1));
+  galTrack.addEventListener('scroll', () => updateArrows(galTrack, galPrevBtn, galNextBtn), {passive:true});
+  updateArrows(galTrack, galPrevBtn, galNextBtn);
+
+  const revTrack = document.getElementById('reviewsTrack');
+  const revPrevBtn = document.getElementById('revPrev');
+  const revNextBtn = document.getElementById('revNext');
+  revPrevBtn.addEventListener('click', () => scrollTrack('reviewsTrack', -1));
+  revNextBtn.addEventListener('click', () => scrollTrack('reviewsTrack',  1));
+  revTrack.addEventListener('scroll', () => updateArrows(revTrack, revPrevBtn, revNextBtn), {passive:true});
+  updateArrows(revTrack, revPrevBtn, revNextBtn);
+
+  // ── Lightbox
+  const galleryCards = [...document.querySelectorAll('.gallery-card')];
+  const lb    = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  let cur = 0;
+  const open  = i => { cur = i; lbImg.src = galleryCards[i].dataset.src; lb.classList.add('open'); document.body.style.overflow='hidden'; };
+  const close = ()  => { lb.classList.remove('open'); document.body.style.overflow=''; };
+  const nav2  = d  => { cur = (cur + d + galleryCards.length) % galleryCards.length; lbImg.src = galleryCards[cur].dataset.src; };
+  galleryCards.forEach((el,i) => el.addEventListener('click', () => open(i)));
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', () => nav2(-1));
+  document.getElementById('lbNext').addEventListener('click', () => nav2(1));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') nav2(-1);
+    if (e.key === 'ArrowRight') nav2(1);
+  });
+</script>
+</body>
+</html>
