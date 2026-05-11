@@ -456,25 +456,36 @@
     /* ─── THEME TOGGLE ─── */
     .nav-right { display: flex; align-items: center; gap: 10px; }
     .theme-toggle {
-      width: 38px; height: 38px;
+      width: 68px; height: 32px;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.15);
-      border-radius: 50%;
+      border-radius: 50px;
       cursor: pointer;
       flex-shrink: 0;
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: background .3s, border-color .3s, transform .2s;
+      justify-content: space-around;
+      position: relative;
+      padding: 0;
+      transition: background .3s, border-color .3s;
     }
-    .theme-toggle:hover { background: rgba(255,255,255,.16); transform: rotate(20deg); }
-    .ti-sun, .ti-moon { width: 17px; height: 17px; stroke-width: 2; transition: opacity .3s, transform .3s; }
-    .ti-sun  { color: #fff; display: none; }
-    .ti-moon { color: #fff; display: block; }
-    body.light .ti-sun  { display: block; color: var(--accent); }
-    body.light .ti-moon { display: none; }
-    body.light .theme-toggle { background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.15); }
-    body.light .theme-toggle:hover { background: rgba(0,0,0,.1); }
+    .toggle-highlight {
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      transition: transform .4s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 0;
+      transform: translateX(34px);
+    }
+    body.light .toggle-highlight { transform: translateX(0); }
+    .ti-sun, .ti-moon { width: 14px; height: 14px; stroke-width: 2.2; position: relative; z-index: 1; transition: color .3s; }
+    .ti-sun  { color: rgba(255,255,255,.35); }
+    .ti-moon { color: #fff; }
+    body.light .ti-sun  { color: #fff; }
+    body.light .ti-moon { color: rgba(0,0,0,.3); }
+    body.light .theme-toggle { background: rgba(0,0,0,.07); border-color: rgba(0,0,0,.15); }
 
     /* ─── LIGHT THEME ─── */
     body.light {
@@ -603,8 +614,9 @@
   </div>
   <div class="nav-right">
     <button class="theme-toggle" id="themeToggle" aria-label="Zmień motyw">
+      <span class="toggle-highlight" aria-hidden="true"></span>
       <svg class="ti-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.07" y2="7.07"/><line x1="16.93" y1="16.93" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.07" y2="16.93"/><line x1="16.93" y1="7.07" x2="19.07" y2="4.93"/></svg>
-<svg class="ti-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg class="ti-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
     </button>
     <button class="nav-burger" id="burger" aria-label="Otwórz menu">
       <span></span><span></span><span></span>
