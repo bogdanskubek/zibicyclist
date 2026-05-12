@@ -7,7 +7,7 @@
   <title>Zibi Cyclist – Serwis Rowerowy | Zgórsko</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,7 +26,7 @@
 
     html { scroll-behavior: auto; }
     body {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Oswald', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -73,7 +73,7 @@
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo img { height: 50px; width: auto; display: block; filter: invert(1); transition: transform .4s var(--ease); }
     .nav-logo:hover img { transform: rotate(-8deg) scale(1.05); }
-    .nav-logo-name { font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--text); white-space: nowrap; line-height: 1; }
+    .nav-logo-name { font-size: .75rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: var(--text); white-space: nowrap; line-height: 1; }
     .nav-logo-name span { color: var(--accent); font-weight: 400; letter-spacing: .18em; }
     body.light .nav-logo-name { color: var(--text); }
 
@@ -101,8 +101,8 @@
     .pill-link {
       display: block;
       padding: 7px 18px;
-      font-size: .78rem;
-      font-weight: 500;
+      font-size: .92rem;
+      font-weight: 400;
       letter-spacing: .05em;
       color: rgba(255,255,255,.42);
       text-decoration: none;
@@ -149,7 +149,7 @@
       gap: 2.5rem;
     }
     .nav-mobile.open { display: flex; }
-    .nav-mobile a { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text); text-decoration: none; }
+    .nav-mobile a { font-size: 1.5rem; font-weight: 400; text-transform: uppercase; letter-spacing: .05em; color: var(--text); text-decoration: none; }
     .nav-mobile a:hover { color: var(--accent); }
 
     /* ─── HERO ─── */
@@ -167,14 +167,14 @@
       align-items: center;
       gap: .75rem;
       font-size: .72rem;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 1.5rem;
     }
     .hero-eyebrow::before { content: ''; display: block; width: 30px; height: 1.5px; background: var(--accent); }
-    .hero-title { font-size: clamp(2.6rem, 5.2vw, 5rem); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; margin-bottom: 1.25rem; white-space: nowrap; }
+    .hero-title { font-size: clamp(2.6rem, 5.2vw, 5rem); font-weight: 400; line-height: 1.05; letter-spacing: -.035em; margin-bottom: 1.25rem; white-space: nowrap; }
     .hero-title em { font-style: normal; color: var(--accent); }
     .hero-sub { font-size: clamp(1rem, 1.4vw, 1.15rem); color: var(--mid); max-width: 420px; line-height: 1.75; margin-bottom: 2.5rem; }
 
@@ -185,7 +185,7 @@
       color: #fff;
       font-family: inherit;
       font-size: .8rem;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: .08em;
       text-transform: uppercase;
       text-decoration: none;
@@ -287,9 +287,9 @@
     .section--deep { background: var(--bg-deep); }
     .container { max-width: 1100px; margin: 0 auto; }
 
-    .eyebrow { display: inline-flex; align-items: center; gap: .75rem; font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .85rem; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .75rem; font-size: .7rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .85rem; }
     .eyebrow::before { content: ''; display: block; width: 26px; height: 1.5px; background: var(--accent); }
-    .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 1.5rem; color: var(--text); }
+    .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 1.5rem; color: var(--text); }
 
     /* ─── O MNIE ─── */
     .about-grid { display: grid; grid-template-columns: auto 1fr; gap: 4rem; align-items: center; }
@@ -306,8 +306,8 @@
     .service-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.2) 50%, transparent 100%); transition: background .5s; }
     .service-card:hover .service-overlay { background: linear-gradient(to top, rgba(6,182,212,.35) 0%, rgba(6,182,212,.08) 50%, transparent 100%); }
     .service-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; }
-    .service-num { font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; opacity: .8; }
-    .service-name { font-size: 1.35rem; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: .6rem; }
+    .service-num { font-size: .65rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; opacity: .8; }
+    .service-name { font-size: 1.35rem; font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: .6rem; }
     .service-desc { font-size: .84rem; color: rgba(255,255,255,.6); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height .5s var(--ease), opacity .4s; opacity: 0; }
     .service-card:hover .service-desc { max-height: 120px; opacity: 1; }
 
@@ -366,13 +366,13 @@
     /* ─── GALLERY ─── */
     .gallery-track {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      padding: 0 8% 4px;
+      padding: 1rem 8% 2rem;
     }
     .gallery-track::-webkit-scrollbar { display: none; }
 
@@ -384,12 +384,13 @@
       position: relative;
       cursor: zoom-in;
       scroll-snap-align: start;
-      transition: transform .3s var(--ease);
+      border-radius: 12px;
     }
-    .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s var(--ease), filter .3s; filter: brightness(.82); }
-    .gallery-card:hover img { transform: scale(1.07); filter: brightness(1); }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s var(--ease), filter .3s; filter: brightness(.85); }
+    .gallery-card:hover img { transform: scale(1.06); filter: brightness(1); }
+    .gal-shine { display: none; }
     .gal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; transition: background .3s; }
-    .gallery-card:hover .gal-overlay { background: rgba(0,0,0,.3); }
+    .gallery-card:hover .gal-overlay { background: rgba(0,0,0,.25); }
     .gal-overlay svg { width: 28px; height: 28px; color: #fff; opacity: 0; transform: scale(.6); transition: all .3s; }
     .gallery-card:hover .gal-overlay svg { opacity: 1; transform: scale(1); }
 
@@ -428,8 +429,8 @@
     .star { width: 15px; height: 15px; fill: #FBBC05; }
     .review-text { font-size: .9rem; color: var(--mid); line-height: 1.8; font-style: italic; margin-bottom: 1.4rem; flex: 1; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
     .review-author-row { display: flex; align-items: center; gap: .75rem; margin-top: auto; }
-    .review-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: .85rem; font-weight: 700; color: #fff; flex-shrink: 0; opacity: .85; }
-    .review-author { font-size: .88rem; font-weight: 600; letter-spacing: .03em; color: var(--text); }
+    .review-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: .85rem; font-weight: 400; color: #fff; flex-shrink: 0; opacity: .85; }
+    .review-author { font-size: .88rem; font-weight: 400; letter-spacing: .03em; color: var(--text); }
 
     /* ─── KONTAKT ─── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: stretch; }
@@ -484,8 +485,8 @@
     .clink:hover .clink-icon { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.15); }
     .clink:hover .clink-icon svg { color: #fff; }
     .clink-body { flex: 1; }
-    .clink-label { display: block; font-size: .64rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mid); margin-bottom: 2px; transition: color .3s; }
-    .clink-val { display: block; font-size: .92rem; font-weight: 500; color: var(--text); transition: color .3s; }
+    .clink-label { display: block; font-size: .64rem; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--mid); margin-bottom: 2px; transition: color .3s; }
+    .clink-val { display: block; font-size: .92rem; font-weight: 400; color: var(--text); transition: color .3s; }
     .clink:hover .clink-label { color: rgba(255,255,255,.6); }
     .clink:hover .clink-val { color: #fff; }
     .clink-arrow { width: 16px; height: 16px; color: var(--faint); transition: transform .3s, color .3s; flex-shrink: 0; }
@@ -635,11 +636,22 @@
       display: flex; align-items: center; gap: .45rem;
       padding: .7rem 1.25rem; border-radius: 50px;
       background: var(--accent); color: #fff; text-decoration: none;
-      font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+      font-size: .78rem; font-weight: 400; letter-spacing: .07em; text-transform: uppercase;
       box-shadow: 0 4px 22px rgba(6,182,212,.4);
+      position: relative; overflow: hidden;
+      animation: btn-pulse 2.8s ease infinite;
+    }
+    .float-cta-btn::before {
+      content: '';
+      position: absolute; top: 0; left: -80%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+      transform: skewX(-18deg);
+      transition: left .55s ease;
     }
     .float-cta-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
-    .float-cta-btn:hover { box-shadow: 0 8px 28px rgba(6,182,212,.55); transform: translateY(-3px) !important; }
+    .float-cta-btn:hover { box-shadow: 0 8px 28px rgba(6,182,212,.55); transform: translateY(-3px) !important; background: #0891B2; animation: none; }
+    .float-cta-btn:hover::before { left: 130%; }
     .float-top-btn.show, .float-cta-btn.show { opacity: 1; transform: translateY(0); }
     body.light .float-top-btn { background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.12); }
 
@@ -653,6 +665,7 @@
     /* ─── RESPONSIVE ─── */
     @media (min-width: 1025px) {
       .reviews-scroll-wrap { margin: 0 5%; border-radius: 16px; overflow: hidden; }
+      .gallery-scroll-wrap { margin: 0 5%; border-radius: 16px; overflow: hidden; }
     }
     @media (max-width: 1024px) {
       .gallery-card { width: clamp(220px, 48vw, 380px); }
@@ -765,42 +778,53 @@
     <div class="hero-visual">
       <div class="hero-wheel-wrap">
         <svg class="wheel-svg wheel-svg--outer" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="5"/>
-          <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="12" fill="none" stroke="currentColor" stroke-width="4"/>
-          <circle cx="100" cy="100" r="4" fill="currentColor"/>
+          <!-- Opona -->
+          <circle cx="100" cy="100" r="93" fill="none" stroke="currentColor" stroke-width="7"/>
+          <!-- Felga (wewnętrzna krawędź) -->
+          <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <!-- Piasta -->
+          <circle cx="100" cy="100" r="13" fill="none" stroke="currentColor" stroke-width="3"/>
+          <circle cx="100" cy="100" r="5" fill="currentColor"/>
+          <!-- Szprychy krzyżowane (16 szt.) -->
+          <!-- Grupa A: piasta offset +30° -->
           <g stroke="currentColor" stroke-width="1.2">
-            <g transform="rotate(0 100 100)">   <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(22.5 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(45 100 100)">   <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(67.5 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(90 100 100)">   <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(112.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(135 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(157.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(180 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(202.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(225 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(247.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(270 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(292.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(315 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(337.5 100 100)"><line x1="100" y1="88" x2="100" y2="6"/></g>
+            <line x1="107.0" y1="87.9" x2="100.0" y2="15.0"/>
+            <line x1="113.5" y1="96.4" x2="160.1" y2="39.9"/>
+            <line x1="112.1" y1="107.0" x2="185.0" y2="100.0"/>
+            <line x1="103.6" y1="113.5" x2="160.1" y2="160.1"/>
+            <line x1="93.0"  y1="112.1" x2="100.0" y2="185.0"/>
+            <line x1="86.5"  y1="103.6" x2="39.9"  y2="160.1"/>
+            <line x1="87.9"  y1="93.0"  x2="15.0"  y2="100.0"/>
+            <line x1="96.4"  y1="86.5"  x2="39.9"  y2="39.9"/>
+          <!-- Grupa B: piasta offset -30° -->
+            <line x1="98.2"  y1="86.1"  x2="132.5" y2="21.5"/>
+            <line x1="108.5" y1="88.9"  x2="178.5" y2="67.5"/>
+            <line x1="113.9" y1="98.2"  x2="178.5" y2="132.5"/>
+            <line x1="111.1" y1="108.5" x2="132.5" y2="178.5"/>
+            <line x1="101.8" y1="113.9" x2="67.5"  y2="178.5"/>
+            <line x1="91.5"  y1="111.1" x2="21.5"  y2="132.5"/>
+            <line x1="86.1"  y1="101.8" x2="21.5"  y2="67.5"/>
+            <line x1="88.9"  y1="91.5"  x2="67.5"  y2="21.5"/>
           </g>
         </svg>
         <svg class="wheel-svg wheel-svg--inner" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="4"/>
-          <circle cx="100" cy="100" r="12" fill="none" stroke="currentColor" stroke-width="4"/>
+          <!-- Felga -->
+          <circle cx="100" cy="100" r="93" fill="none" stroke="currentColor" stroke-width="5"/>
+          <!-- Piasta -->
+          <circle cx="100" cy="100" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
           <circle cx="100" cy="100" r="4" fill="currentColor"/>
+          <!-- Szprychy krzyżowane (8 szt.) -->
           <g stroke="currentColor" stroke-width="1.5">
-            <g transform="rotate(0 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(45 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(90 100 100)">  <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(135 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(180 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(225 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(270 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
-            <g transform="rotate(315 100 100)"> <line x1="100" y1="88" x2="100" y2="6"/></g>
+            <!-- Grupa A: piasta offset +45° -->
+            <line x1="107.1" y1="92.9" x2="100.0" y2="12.0"/>
+            <line x1="107.1" y1="107.1" x2="188.0" y2="100.0"/>
+            <line x1="92.9"  y1="107.1" x2="100.0" y2="188.0"/>
+            <line x1="92.9"  y1="92.9"  x2="12.0"  y2="100.0"/>
+            <!-- Grupa B: piasta offset -45° -->
+            <line x1="100.0" y1="90.0"  x2="162.2" y2="37.8"/>
+            <line x1="110.0" y1="100.0" x2="162.2" y2="162.2"/>
+            <line x1="100.0" y1="110.0" x2="37.8"  y2="162.2"/>
+            <line x1="90.0"  y1="100.0" x2="37.8"  y2="37.8"/>
           </g>
         </svg>
         <!-- Logo centered inside wheel – full, not clipped -->
@@ -874,25 +898,23 @@
     <div class="scroll-wrap gallery-scroll-wrap">
       <button class="track-arrow track-arrow--prev" id="galPrev" aria-label="Poprzednie">&#8592;</button>
       <div class="gallery-track" id="galleryTrack">
-      <div class="gallery-card" data-src="assets/gallery/g1.jpg"><img src="assets/gallery/g1.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g2.jpg"><img src="assets/gallery/g2.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g3.jpg"><img src="assets/gallery/g3.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g4.jpg"><img src="assets/gallery/g4.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g5.jpg"><img src="assets/gallery/g5.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g6.jpg"><img src="assets/gallery/g6.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g7.jpg"><img src="assets/gallery/g7.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g8.jpg"><img src="assets/gallery/g8.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g9.jpg"><img src="assets/gallery/g9.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g10.jpg"><img src="assets/gallery/g10.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g11.jpg"><img src="assets/gallery/g11.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g12.jpg"><img src="assets/gallery/g12.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g13.jpg"><img src="assets/gallery/g13.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g14.jpg"><img src="assets/gallery/g14.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g15.jpg"><img src="assets/gallery/g15.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g16.jpg"><img src="assets/gallery/g16.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-      <div class="gallery-card" data-src="assets/gallery/g17.jpg"><img src="assets/gallery/g17.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z101.jpg"><img src="assets/images/z101.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z102.jpg"><img src="assets/images/z102.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z103.jpg"><img src="assets/images/z103.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z104.jpg"><img src="assets/images/z104.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z105.jpg"><img src="assets/images/z105.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z106.jpg"><img src="assets/images/z106.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z107.jpg"><img src="assets/images/z107.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z108.jpg"><img src="assets/images/z108.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+      <div class="gallery-card" data-src="assets/images/z109.jpg"><img src="assets/images/z109.jpg" alt="Serwis rowerowy" loading="lazy"><div class="gal-shine"></div><div class="gal-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
       </div>
       <button class="track-arrow track-arrow--next" id="galNext" aria-label="Następne">&#8594;</button>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="https://www.facebook.com/ZIBICYCLIST?locale=pl_PL" target="_blank" rel="noopener" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:.6rem;margin-left:0">
+        <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><rect width="24" height="24" rx="5" fill="#1877F2"/><path d="M16 8h-2a1 1 0 0 0-1 1v2h3l-.5 3H13v7h-3v-7H8v-3h2V9a4 4 0 0 1 4-4h2v3z" fill="#fff"/></svg>
+        Więcej moich realizacji na FB
+      </a>
     </div>
   </section>
 
@@ -1009,30 +1031,10 @@
       </div>
       <button class="track-arrow track-arrow--next" id="revNext" aria-label="Następne">&#8594;</button>
     </div>
-    <div style="text-align:center;margin-top:2.5rem;padding:0 1rem">
-      <p style="font-size:.85rem;color:var(--mid);margin-bottom:.9rem;letter-spacing:.05em;text-transform:uppercase">Więcej opinii znajdziesz na</p>
-      <a href="https://www.google.com/search?sxsrf=ANbL-n76axq35bwxCo0lvEBNAGqQwHZHIw:1778602148221&q=Zibi+Cyclist+Serwis+Rowerowy+Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDayMDO2NDM1NjOyMDE2MTCwNNvAyPiKUTkqMylTwbkyOSezuEQhOLWoPLNYISi_PLUov7xSwb8gMy8zdRErMaoAPZNk82cAAAA&rldimm=13286396536284340096&tbm=lcl&hl=pl-PL#lkt=LocalPoiReviews"
-         target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:.75rem;padding:.75rem 1.5rem;border-radius:999px;background:#fff;border:1.5px solid rgba(0,0,0,.12);box-shadow:0 2px 8px rgba(0,0,0,.1);text-decoration:none;transition:box-shadow .2s"
-         onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,.18)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,.1)'">
-        <!-- Google G logo -->
-        <svg width="22" height="22" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
-        <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2">
-          <span style="font-size:.75rem;color:#666;font-weight:500">Google</span>
-          <span style="font-size:.95rem;color:#222;font-weight:700">Zobacz wszystkie opinie</span>
-        </span>
-        <span style="display:flex;gap:1px;margin-left:.25rem">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
-        </span>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="https://www.google.com/search?sxsrf=ANbL-n76axq35bwxCo0lvEBNAGqQwHZHIw:1778602148221&q=Zibi+Cyclist+Serwis+Rowerowy+Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDayMDO2NDM1NjOyMDE2MTCwNNvAyPiKUTkqMylTwbkyOSezuEQhOLWoPLNYISi_PLUov7xSwb8gMy8zdRErMaoAPZNk82cAAAA&rldimm=13286396536284340096&tbm=lcl&hl=pl-PL#lkt=LocalPoiReviews" target="_blank" rel="noopener" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:.6rem;margin-left:0">
+        <svg width="15" height="15" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Więcej opinii na Google
       </a>
     </div>
   </section>
@@ -1235,7 +1237,6 @@
       const p = Math.min((ts - t0) / 500, 1);
       const ease = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
       t.scrollLeft = startX + dist * ease;
-      if (trackId === 'galleryTrack') updateGalleryWave();
       if (p < 1) { requestAnimationFrame(step); }
       else { t.scrollLeft = targetX; t.style.scrollSnapType = ''; }
     }
@@ -1254,21 +1255,6 @@
   galTrack.addEventListener('scroll', () => updateArrows(galTrack, galPrevBtn, galNextBtn), {passive:true});
   updateArrows(galTrack, galPrevBtn, galNextBtn);
 
-  // ── Gallery wave effect
-  const galCards = [...galTrack.querySelectorAll('.gallery-card')];
-  function updateGalleryWave() {
-    const center = galTrack.scrollLeft + galTrack.clientWidth / 2;
-    const range  = galTrack.clientWidth * 0.65;
-    galCards.forEach(card => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const t = Math.max(0, 1 - Math.abs(cardCenter - center) / range);
-      const lift  = t * t * 22;
-      const scale = 1 + t * 0.03;
-      card.style.transform = `translateY(-${lift}px) scale(${scale})`;
-    });
-  }
-  galTrack.addEventListener('scroll', updateGalleryWave, {passive:true});
-  updateGalleryWave();
 
   const revTrack = document.getElementById('reviewsTrack');
   const revPrevBtn = document.getElementById('revPrev');
