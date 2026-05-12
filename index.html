@@ -299,20 +299,17 @@
     .about-text p { color: var(--mid); font-size: 1.025rem; line-height: 1.85; margin-bottom: 1.25rem; }
 
     /* ─── USŁUGI ─── */
-    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); margin-top: 2rem; }
-    .service-card { padding: 2.5rem 2rem; border-right: 1px solid var(--border); position: relative; overflow: hidden; text-align: center; }
-    .service-card:last-child { border-right: none; }
-    .service-card::after { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateY(101%); transition: transform .45s var(--ease); z-index: 0; }
-    .service-card:hover::after { transform: translateY(0); }
-    .service-card > * { position: relative; z-index: 1; }
-    .service-img-wrap { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem; border: 2px solid var(--border); flex-shrink: 0; transition: border-color .3s; }
-    .service-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s var(--ease); }
-    .service-card:hover .service-img { transform: scale(1.1); }
-    .service-card:hover .service-img-wrap { border-color: rgba(255,255,255,.3); }
-    .service-name { font-size: 1.15rem; font-weight: 700; line-height: 1.2; margin-bottom: .65rem; color: var(--text); transition: color .3s; }
-    .service-desc { font-size: .88rem; color: var(--mid); line-height: 1.7; transition: color .3s; }
-    .service-card:hover .service-name { color: #fff; }
-    .service-card:hover .service-desc { color: rgba(255,255,255,.75); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--faint); margin-top: 2rem; overflow: hidden; border-radius: 8px; }
+    .service-card { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--bg-alt); cursor: default; }
+    .service-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease), filter .7s; filter: brightness(.55) saturate(.8); }
+    .service-card:hover img { transform: scale(1.08); filter: brightness(.35) saturate(.5); }
+    .service-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.2) 50%, transparent 100%); transition: background .5s; }
+    .service-card:hover .service-overlay { background: linear-gradient(to top, rgba(6,182,212,.35) 0%, rgba(6,182,212,.08) 50%, transparent 100%); }
+    .service-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; }
+    .service-num { font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; opacity: .8; }
+    .service-name { font-size: 1.35rem; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: .6rem; }
+    .service-desc { font-size: .84rem; color: rgba(255,255,255,.6); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height .5s var(--ease), opacity .4s; opacity: 0; }
+    .service-card:hover .service-desc { max-height: 120px; opacity: 1; }
 
     /* ─── HORIZONTAL SCROLL (gallery + reviews) ─── */
     .h-section-head {
@@ -565,7 +562,7 @@
     /* Icons z białymi obramowaniami */
     body.light .info-icon { border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.04); }
     body.light .clink-icon { border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.04); }
-    body.light .service-img-wrap { border-color: rgba(0,0,0,.12); }
+    body.light .service-card img { filter: brightness(.5) saturate(.7); }
     /* Review cards */
     body.light .review-card { background: #fff; border-color: rgba(0,0,0,.1); }
     body.light .review-quote { color: rgba(0,0,0,.06); }
@@ -593,8 +590,6 @@
     /* Sections: add subtle top/bottom separator lines for clarity */
     body.light .section--alt { border-top: 1px solid rgba(0,0,0,.07); border-bottom: 1px solid rgba(0,0,0,.07); }
     /* Service cards: make grid lines visible */
-    body.light .services-grid { border-color: rgba(0,0,0,.1); }
-    body.light .service-card { border-right-color: rgba(0,0,0,.1); }
     /* Info list icons already covered by .info-icon override above */
     /* Faint line color */
     body.light .about-img-accent { border-color: var(--accent); }
@@ -661,8 +656,8 @@
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-img-accent { display: none; }
       .services-grid { grid-template-columns: 1fr; }
-      .service-card { border-right: none; border-bottom: 1px solid var(--border); }
-      .service-card:last-child { border-bottom: none; }
+      .service-card { aspect-ratio: 16/9; }
+      .service-desc { max-height: 80px; opacity: 1; }
       .nav-pill-wrap { display: none; }
       .nav-burger { display: flex; }
       footer { flex-direction: column; gap: .75rem; text-align: center; }
@@ -826,25 +821,31 @@
       <h2 class="section-title fade-up" data-delay="1">Moje usługi</h2>
       <div class="services-grid fade-up" data-delay="2">
         <div class="service-card">
-          <div class="service-img-wrap">
-            <img class="service-img" src="assets/images/p2.jpg" alt="Serwis i naprawa">
+          <img src="assets/images/p2.jpg" alt="Serwis i naprawa">
+          <div class="service-overlay"></div>
+          <div class="service-content">
+            <div class="service-num">01</div>
+            <div class="service-name">Serwis i naprawa</div>
+            <p class="service-desc">Kompleksowe przeglądy, regulacje przerzutek i hamulców, wymiana podzespołów. Twój rower wróci w pełnej sprawności.</p>
           </div>
-          <div class="service-name">Serwis i naprawa</div>
-          <p class="service-desc">Kompleksowe przeglądy, regulacje przerzutek i hamulców, wymiana podzespołów. Twój rower wróci w pełnej sprawności.</p>
         </div>
         <div class="service-card">
-          <div class="service-img-wrap">
-            <img class="service-img" src="assets/images/transportzibicyclist.jpg" alt="Transport roweru" style="object-position: center 30%;">
+          <img src="assets/images/transportzibicyclist.jpg" alt="Transport roweru" style="object-position: center 30%;">
+          <div class="service-overlay"></div>
+          <div class="service-content">
+            <div class="service-num">02</div>
+            <div class="service-name">Transport roweru</div>
+            <p class="service-desc">Odbiór i dostawa roweru pod wskazany adres. Wygodne rozwiązanie, gdy nie możesz do nas przyjechać.</p>
           </div>
-          <div class="service-name">Transport roweru</div>
-          <p class="service-desc">Odbiór i dostawa roweru pod wskazany adres. Wygodne rozwiązanie, gdy nie możesz do nas przyjechać.</p>
         </div>
         <div class="service-card">
-          <div class="service-img-wrap">
-            <img class="service-img" src="assets/images/owner.jpg" alt="Pomoc i doradztwo" style="object-position: center 15%;">
+          <img src="assets/images/owner.jpg" alt="Pomoc i doradztwo" style="object-position: center 15%;">
+          <div class="service-overlay"></div>
+          <div class="service-content">
+            <div class="service-num">03</div>
+            <div class="service-name">Pomoc i doradztwo</div>
+            <p class="service-desc">Nie wiesz co kupić? Chętnie pomogę dobrać sprzęt do Twoich potrzeb i budżetu — bez zbędnej presji.</p>
           </div>
-          <div class="service-name">Pomoc i doradztwo</div>
-          <p class="service-desc">Nie wiesz co kupić? Chętnie pomogę dobrać sprzęt do Twoich potrzeb i budżetu — bez zbędnej presji.</p>
         </div>
       </div>
     </div>
